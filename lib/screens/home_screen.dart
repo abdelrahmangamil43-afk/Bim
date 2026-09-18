@@ -10,6 +10,11 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _HomeScreenState extends State<HomeScreen> {
+  bool isMale = true;
+  int height = 150;
+  int weight = 60;
+  int age = 25;
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -35,10 +40,23 @@ class _HomeScreenState extends State<HomeScreen> {
             Row(
               spacing: 10,
               children: [
-                Genderwidget(image: "assets/images/malee.png", title: "Male"),
+                Genderwidget(
+                  image: "assets/images/malee.png",
+                  title: "Male",
+                  isSelected: isMale,
+                  onTap: () {
+                    isMale = true;
+                    setState(() {});
+                  },
+                ),
                 Genderwidget(
                   image: "assets/images/femalee.png",
                   title: "Female",
+                  isSelected: !isMale,
+                  onTap: () {
+                    isMale = false;
+                    setState(() {});
+                  },
                 ),
               ],
             ),
@@ -64,7 +82,7 @@ class _HomeScreenState extends State<HomeScreen> {
                       crossAxisAlignment: CrossAxisAlignment.end,
                       children: [
                         Text(
-                          "170",
+                          height.toString(),
                           style: TextStyle(
                             fontSize: 32,
                             fontWeight: .w600,
@@ -85,8 +103,11 @@ class _HomeScreenState extends State<HomeScreen> {
                       activeColor: Color(0xffE83D67),
                       min: 50,
                       max: 250,
-                      value: 170,
-                      onChanged: (value) {},
+                      value: height.toDouble(),
+                      onChanged: (value) {
+                        height = value.toInt();
+                        setState(() {});
+                      },
                     ),
                   ],
                 ),
@@ -98,15 +119,34 @@ class _HomeScreenState extends State<HomeScreen> {
                 children: [
                   Userwidget(
                     title: "Weight",
-                    value: 60,
-                    add: () {},
-                    remove: () {},
+                    value: weight,
+                    add: () {
+                      if (weight <= 100) {
+                        weight++;
+                        setState(() {});
+                      }
+                    },
+                    remove: () {
+                      if (weight >= 4) {
+                        weight--;
+                      }
+                    },
                   ),
                   Userwidget(
                     title: "Age",
-                    value: 26,
-                    add: () {},
-                    remove: () {},
+                    value: age,
+                    add: () {
+                      if (age <= 100) {
+                        age++;
+                        setState(() {});
+                      }
+                    },
+                    remove: () {
+                      if (age >= 1) {
+                        age--;
+                        setState(() {});
+                      }
+                    },
                   ),
                 ],
               ),
