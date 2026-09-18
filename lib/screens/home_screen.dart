@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:bmi/widgets/gender.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
@@ -30,26 +31,12 @@ class _HomeScreenState extends State<HomeScreen> {
       body: Column(
         children: [
           SizedBox(height: 20),
-          Expanded(
-            child: Row(
-              children: [
-                Container(
-                  child: Column(
-                    children: [
-                      Image.asset("assets/images/male.png"),
-                      Text(
-                        "Male",
-                        style: TextStyle(
-                          fontSize: 20,
-                          fontWeight: .w400,
-                          color: Color(0xff8B8C9E),
-                        ),
-                      ),
-                    ],
-                  ),
-                ),
-              ],
-            ),
+          Row(
+            spacing: 10,
+            children: [
+              Genderwidget(image: "assets/images/male.png", title: "Male"),
+              Genderwidget(image: "assets/images/female.png", title: "Female"),
+            ],
           ),
           Expanded(child: Container()),
 
