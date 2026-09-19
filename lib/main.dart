@@ -1,5 +1,7 @@
+import 'package:bmi/screens/result_screen.dart';
 import 'package:flutter/material.dart';
 
+import 'screens/result_screen.dart';
 import 'screens/home_screen.dart';
 
 void main() {
@@ -15,7 +17,11 @@ class BMIApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       title: 'BMI Calculator',
       theme: ThemeData(useMaterial3: true),
-      home: const HomeScreen(),
+      initialRoute: HomeScreen.route,
+      routes: {
+        HomeScreen.route: (context) => HomeScreen(),
+        ResultScreen.route: (context) => ResultScreen(),
+      },
     );
   }
 }

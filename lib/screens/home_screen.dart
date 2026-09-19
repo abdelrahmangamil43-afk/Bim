@@ -1,10 +1,15 @@
+import 'dart:math';
+
+import 'package:bmi/model/user_bmi_model.dart';
+import 'package:bmi/screens/result_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:bmi/widgets/gender.dart';
 import 'package:bmi/widgets/user.dart';
+import 'package:bmi/widgets/custom_button.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
-
+  static String route = "HomeScreen";
   @override
   State<HomeScreen> createState() => _HomeScreenState();
 }
@@ -130,6 +135,7 @@ class _HomeScreenState extends State<HomeScreen> {
                       if (weight >= 4) {
                         weight--;
                       }
+                      setState(() {});
                     },
                   ),
                   Userwidget(
@@ -154,18 +160,19 @@ class _HomeScreenState extends State<HomeScreen> {
           ],
         ),
       ),
-      bottomNavigationBar: MaterialButton(
-        onPressed: () {},
-        color: Color(0xffE83D67),
-        padding: EdgeInsets.symmetric(vertical: 30),
-        child: Text(
-          'Calculate',
-          style: TextStyle(
-            fontSize: 32,
-            fontWeight: FontWeight.w600,
-            color: Colors.white,
-          ),
-        ),
+      bottomNavigationBar: CusttomButtonBmi(
+        title: "Calculate",
+        onPressed: () {
+          // double calculateBmi = (weight / pow(height / 100, 2)).roundToDouble();
+          // print(calculateBmi);
+          var user = UserBmiModel(
+            gender: isMale ? "Male" : "Female",
+            height: height,
+            weight: weight,
+            age: age,
+          );
+          Navigator.of(context).pushNamed(ResultScreen.route, arguments: user);
+        },
       ),
     );
   }
